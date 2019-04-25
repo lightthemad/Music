@@ -1,0 +1,91 @@
+.body{
+    animation: fade;
+    animation-direction: normal;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-duration: 1.5s;
+    transition:all 0.1s;
+    background-color: black;
+    background-image: url(https://pp.userapi.com/c847217/v847217457/1007c5/54AndQ1zcpI.jpg);
+    background-repeat: no-repeat;
+}
+
+@keyframes fade {
+    from {opacity: 0;}
+    to {opacity: 0.9;}
+}
+
+.text {
+    color: white;
+    font-size: 30px;
+    font-family: 'Finger Paint', cursive;
+    user-select: none;
+}
+
+.songs {
+    color: red;
+    font-size: 30px;
+    font-family: 'Finger Paint', cursive;
+    user-select: none;
+}
+
+.welc {
+    color: red;
+    font-size: 30px;
+    font-family: 'Finger Paint', cursive;
+    user-select: none;
+
+}
+
+.btn {
+    opacity: 0.8;
+    transition: all 0.1s;
+    user-select: none;
+    font-size: 30px;
+    font-family: 'Finger Paint', cursive;
+    background-color: #A9A9A9;
+    border: 6px outset #F6F6F6;
+    border-radius: 50px;
+    margin: 10px;
+    outline: none;
+    /*position: relative;*/
+}
+
+.btn:hover {
+    transform: scale(1.1);
+    background-color: #777777;
+    border: 4px outset red;
+    text-shadow: 2px 2px red;
+    box-shadow: 4px 4px 20px red;
+    opacity: 0.9;
+}
+
+.btn:active {
+    transform: scale(1);
+    background-color: #6B6B6B;
+    border: 4px outset lime;
+    text-shadow: -2px -2px lime;
+    box-shadow: -4px -4px 20px lime;
+
+}
+
+.abtn {
+    opacity: 0.5;
+    border: 6px outset #F6F6F6;
+    border-radius: 40px;
+    transition:all 1s;
+    height: 40px;
+    font-size: 30px;
+    font-family: 'Finger Paint', cursive;
+    text-align: left;
+    padding-left: 1%;
+
+}
+
+.abtn::selection {
+    color:red;
+}
+
+.abtn:hover {
+    box-shadow: 10px 10px 20px gold;
+}
