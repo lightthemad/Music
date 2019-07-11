@@ -21,7 +21,7 @@ jobs:
 #          name: run PHPCS tests
 #          command: |
 #            bash ./.circleci/phpcs.sh
-       - run:
-           name: run BEHAT tests
-           command: |
-             bash ./.circleci/behat.sh
+      - run:
+          name: run BEHAT tests
+          command: |
+            bash ./.circleci/behat.sh
