@@ -1,0 +1,354 @@
+
+
+Thu Jul 11 14:18:25 2019
+Command line: TestDisk
+
+TestDisk 7.0, Data Recovery Utility, April 2015
+Christophe GRENIER <grenier@cgsecurity.org>
+http://www.cgsecurity.org
+OS: Linux, kernel 4.15.0-20-generic (#21-Ubuntu SMP Tue Apr 24 06:16:15 UTC 2018) x86_64
+Compiler: GCC 7.2
+ext2fs lib: 1.44.1, ntfs lib: libntfs-3g, reiserfs lib: none, ewf lib: none, curses lib: ncurses 6.0
+/dev/sda: LBA, HPA, LBA48, DCO support
+/dev/sda: size       976773168 sectors
+/dev/sda: user_max   976773168 sectors
+/dev/sda: native_max 976773168 sectors
+/dev/sda: dco        976773168 sectors
+Warning: can't get size for Disk /dev/mapper/control - 0 B - 0 sectors, sector size=512
+Hard disk list
+Disk /dev/sda - 500 GB / 465 GiB - CHS 60801 255 63, sector size=512 - TOSHIBA MQ01ACF050, S/N:68H8CZ4QT, FW:AV0A3E
+
+Partition table type (auto): EFI GPT
+Disk /dev/sda - 500 GB / 465 GiB - TOSHIBA MQ01ACF050
+Partition table type: Intel
+
+Analyse Disk /dev/sda - 500 GB / 465 GiB - CHS 60801 255 63
+Geometry from i386 MBR: head=255 sector=63
+NTFS at 0/32/33
+NTFS at 70/29/24
+Current partition structure:
+ 1 * HPFS - NTFS              0  32 33    70  29 23    1124352
+ 2 P HPFS - NTFS             70  29 24 17699  91 56  283213824
+ 3 P Linux                17699 124 26 60801  61 52  692429688
+
+search_part()
+Disk /dev/sda - 500 GB / 465 GiB - CHS 60801 255 63
+NTFS at 0/32/33
+filesystem size           1124352
+sectors_per_cluster       8
+mft_lcn                   46848
+mftmirr_lcn               2
+clusters_per_mft_record   -10
+clusters_per_index_record 1
+     HPFS - NTFS              0  32 33    70  29 23    1124352
+     NTFS, blocksize=4096, 575 MB / 549 MiB
+NTFS at 70/29/24
+filesystem size           283213824
+sectors_per_cluster       8
+mft_lcn                   786432
+mftmirr_lcn               2
+clusters_per_mft_record   -10
+clusters_per_index_record 1
+     HPFS - NTFS             70  29 24 17699  91 56  283213824
+     NTFS, blocksize=4096, 145 GB / 135 GiB
+
+recover_EXT2: s_block_group_nr=0/2641, s_mnt_count=125/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 86553711
+recover_EXT2: part_size 692429688
+     Linux                17699 124 26 60801  61 52  692429688
+     ext4 blocksize=4096 Large_file Sparse_SB Recover, 354 GB / 330 GiB
+
+Results
+   * HPFS - NTFS              0  32 33    70  29 23    1124352
+     NTFS, blocksize=4096, 575 MB / 549 MiB
+   P HPFS - NTFS             70  29 24 17699  91 56  283213824
+     NTFS, blocksize=4096, 145 GB / 135 GiB
+   P Linux                17699 124 26 60801  80 15  692430848
+     ext4 blocksize=4096 Large_file Sparse_SB Recover, 354 GB / 330 GiB
+
+Hint for advanced users. dmsetup may be used if you prefer to avoid to rewrite the partition table for the moment:
+echo "0 1124352 linear /dev/sda 2048" | dmsetup create test0
+echo "0 283213824 linear /dev/sda 1126400" | dmsetup create test1
+echo "0 692430848 linear /dev/sda 284342272" | dmsetup create test2
+
+interface_write()
+ 1 * HPFS - NTFS              0  32 33    70  29 23    1124352
+ 2 P HPFS - NTFS             70  29 24 17699  91 56  283213824
+ 3 P Linux                17699 124 26 60801  80 15  692430848
+simulate write!
+
+write_mbr_i386: starting...
+write_all_log_i386: starting...
+No extended partition
+
+Interface Advanced
+Geometry from i386 MBR: head=255 sector=63
+NTFS at 0/32/33
+NTFS at 70/29/24
+ 1 * HPFS - NTFS              0  32 33    70  29 23    1124352
+     NTFS, blocksize=4096, 575 MB / 549 MiB
+ 2 P HPFS - NTFS             70  29 24 17699  91 56  283213824
+     NTFS, blocksize=4096, 145 GB / 135 GiB
+ 3 P Linux                17699 124 26 60801  61 52  692429688
+     ext4 blocksize=4096 Large_file Sparse_SB Recover, 354 GB / 330 GiB
+
+
+dir_partition inode=2
+ 3 P Linux                17699 124 26 60801  61 52  692429688
+     ext4 blocksize=4096 Large_file Sparse_SB Recover, 354 GB / 330 GiB
+Directory /
+       2 drwxr-xr-x     0      0      4096 20-Jan-2019 20:01 .
+       2 drwxr-xr-x     0      0      4096 20-Jan-2019 20:01 ..
+      11 drwx------     0      0     16384 20-Jan-2019 19:57 lost+found
+      12 -rw-------     0      0 2147483648 20-Jan-2019 19:57 swapfile
+ 7340033 drwxr-xr-x     0      0     12288 25-Jun-2019 12:51 etc
+ 17039361 drwxr-xr-x     0      0      4096  5-Feb-2019 15:11 media
+ 14417921 drwxr-xr-x     0      0      4096 30-May-2019 12:14 bin
+ 10485761 drwxr-xr-x     0      0      4096 30-May-2019 12:36 boot
+ 1572865 drwxr-xr-x     0      0      4096 17-Dec-2018 17:46 dev
+ 16515073 drwxr-xr-x     0      0      4096 20-Jan-2019 20:00 home
+ 16252929 drwxr-xr-x     0      0      4096 20-Jan-2019 20:02 lib
+ 15204353 drwxr-xr-x     0      0      4096 17-Dec-2018 17:16 lib64
+  262145 drwxr-xr-x     0      0      4096 17-Dec-2018 17:16 mnt
+  393217 drwxr-xr-x     0      0      4096 20-Jun-2019 11:57 opt
+ 8388609 drwxr-xr-x     0      0      4096 24-Apr-2018 12:34 proc
+ 4456449 drwx------     0      0      4096  5-Feb-2019 16:08 root
+ 16777217 drwxr-xr-x     0      0      4096 17-Dec-2018 17:47 run
+ 18350081 drwxr-xr-x     0      0     12288 30-May-2019 12:20 sbin
+ 20185089 drwxr-xr-x     0      0      4096 17-Dec-2018 17:16 srv
+ 19922945 drwxr-xr-x     0      0      4096 24-Apr-2018 12:34 sys
+ 9175041 drwxrwxrwt     0      0     20480 11-Jul-2019 14:10 tmp
+ 13631489 drwxr-xr-x     0      0      4096 30-May-2019 12:16 usr
+ 2359297 drwxr-xr-x     0      0      4096  4-Mar-2019 12:41 var
+      13 lrwxrwxrwx     0      0        33 20-Jan-2019 20:01 initrd.img
+      14 lrwxrwxrwx     0      0        33 20-Jan-2019 19:57 initrd.img.old
+      15 lrwxrwxrwx     0      0        30 20-Jan-2019 20:01 vmlinuz
+X     16 lrwxrwxrwx     0      0        30 20-Jan-2019 19:57 vmlinuz.old
+ 12845057 drwxr-xr-x     0      0      4096 20-Jan-2019 20:00 cdrom
+
+dir_partition inode=16515073
+ 3 P Linux                17699 124 26 60801  61 52  692429688
+     ext4 blocksize=4096 Large_file Sparse_SB Recover, 354 GB / 330 GiB
+Directory /home
+ 16515073 drwxr-xr-x     0      0      4096 20-Jan-2019 20:00 .
+       2 drwxr-xr-x     0      0      4096 20-Jan-2019 20:01 ..
+ 16519444 drwxr-xr-x  1000   1000      4096 11-Jul-2019 13:48 light
+
+dir_partition inode=16519444
+ 3 P Linux                17699 124 26 60801  61 52  692429688
+     ext4 blocksize=4096 Large_file Sparse_SB Recover, 354 GB / 330 GiB
+Directory /home/light
+ 16519444 drwxr-xr-x  1000   1000      4096 11-Jul-2019 13:48 .
+ 16515073 drwxr-xr-x     0      0      4096 20-Jan-2019 20:00 ..
+ 16519445 -rw-r--r--  1000   1000       516 20-Jan-2019 20:00 .gtkrc-xfce
+ 16519446 -rw-r--r--  1000   1000       807 20-Jan-2019 20:00 .profile
+ 16519447 -rw-r--r--  1000   1000       220 20-Jan-2019 20:00 .bash_logout
+ 16519448 -rw-r--r--  1000   1000        22 20-Jan-2019 20:00 .gtkrc-2.0
+ 16519449 drwxr-xr-x  1000   1000      4096 26-Jun-2019 11:07 .config
+ 16519457 -rw-r--r--  1000   1000      3800  7-May-2019 16:21 .bashrc
+ 16516251 drwx------  1000   1000      4096 20-Jun-2019 12:16 .cache
+ 16516255 drwx------  1000   1000      4096 20-Jan-2019 20:07 .gnupg
+ 16516254 -rw-r--r--  1000   1000        27 20-Jan-2019 20:07 .dmrc
+ 16516257 -rw-------  1000   1000        69 11-Jul-2019 11:06 .Xauthority
+ 16516258 -rw-------  1000   1000    275771 11-Jul-2019 14:16 .xsession-errors
+ 16516262 drwx------  1000   1000      4096 20-Jan-2019 20:07 .local
+ 16516265 drwxr-xr-x  1000   1000      4096 17-Jun-2019 15:23 Desktop
+ 16516270 drwxr-xr-x  1000   1000      4096 20-Jan-2019 20:07 Public
+ 16516260 -rw-------  1000   1000     45240 11-Jul-2019 11:06 .ICEauthority
+ 16516267 drwxr-xr-x  1000   1000      4096 20-Jun-2019 16:07 Downloads
+ 16516269 drwxr-xr-x  1000   1000      4096 20-Jan-2019 20:07 Templates
+ 16516271 drwxr-xr-x  1000   1000      4096 10-Apr-2019 17:10 Documents
+ 16516659 -rw-------  1000   1000      2685  4-Jun-2019 17:09 .viminfo
+ 16516273 drwxr-xr-x  1000   1000      4096 10-May-2019 12:10 Pictures
+ 17960198 drwxrwxr-x  1000   1000      4096  9-Jul-2019 18:27 Videos
+ 16516277 drwx------  1000   1000      4096 30-May-2019 14:47 .gconf
+ 16516324 drwxrwxr-x  1000   1000      4096 20-Jan-2019 20:07 .cinnamon
+ 16516371 -rw-r--r--  1000   1000         0 20-Jan-2019 20:09 .sudo_as_admin_successful
+ 16516966 -rw-------  1000   1000     40481 11-Jul-2019 13:48 .bash_history
+ 16516376 drwx------  1000   1000      4096 20-Jan-2019 20:11 .mozilla
+ 16788539 drwx------  1000   1000      4096 20-Jan-2019 20:21 .pki
+ 16788583 drwx------  1000   1000      4096 20-Jan-2019 20:21 .gnome
+ 16656337 drwx------     0      0      4096 20-Jan-2019 20:44 .dbus
+X16519572 -rw-------  1000   1000     11335 10-Jul-2019 12:45 temp
+ 16516835 -rw-------  1000   1000      6363  5-Jun-2019 11:00 .mysql_history
+ 16516266 -rw-------  1000   1000    304012 10-Jul-2019 15:53 .xsession-errors.old
+ 17827675 drwx------     0      0      4096 21-Jan-2019 12:53 .gvfs
+ 18088422 drwxrwxr-x  1000   1000      4096 21-Jan-2019 13:02 .PhpStorm2018.3
+ 18088434 drwxrwxr-x  1000   1000      4096 21-Jan-2019 13:02 .java
+X16516275 -rw-r--r--  1000   1000     18598 11-Jul-2019 11:06 .ICEauthority-c
+ 18088457 drwxrwxrwx  1000   1000      4096  4-Jun-2019 15:45 PhpstormProjects
+X17172396 drwxrwxrwx  1000   1000         0  9-Jul-2019 18:28 sympho
+ 16656298 drwxrwxr-x  1000   1000      4096 30-May-2019 12:19 .linuxmint
+ 16516829 -rw-rw-r--  1000   1000       108 27-May-2019 15:24 .gitconfig
+ 16799809 drwx------  1000   1000     12288 11-Jul-2019 11:07 .nx
+ 16913005 drwx------  1000   1000      4096  5-Feb-2019 15:12 .qt
+ 16519587 -rw-rw-r--  1000   1000       130  8-Feb-2019 13:47 .xinputrc
+ 17042363 drwxrwxrwx  1000   1000      4096  3-Jul-2019 12:25 .composer
+ 18482196 drwxr-xr-x  1000   1000      4096 20-Jun-2019 16:04 .gimp-2.8
+X16516966 -rw-------  1000   1000     40481 11-Jul-2019 13:48 .bash_history-03320.tmp
+X16519594 -rw-------  1000   1000     59034 10-Jul-2019 12:21 composer.lock
+ 17042366 drwxrwxr-x  1000   1000      4096 26-Feb-2019 15:07 .var
+ 17960039 drwxrwxr-x  1000   1000      4096 20-Jun-2019 12:16 pt
+X18093131 drwxrwxr-x  1000   1000         0  9-Jul-2019 18:26 test
+ 17046838 drwxrwxr-x  1000   1000      4096 12-Mar-2019 12:23 .console
+ 17042693 drwxr-xr-x     0      0      4096 15-Mar-2019 16:41 .zenmap
+X16519643 -rw-------  1000   1000     11469 10-Jul-2019 12:19 drupal.phar
+ 17827884 drwxrwxr-x  1000   1000      4096 11-Jul-2019 13:58 girchi-com-d8
+ 19402126 drwxrwxr-x  1000   1000      4096 18-Jun-2019 18:09 .sqlmap
+X16519661 -rw-------  1000   1000     14048 10-Jul-2019 12:21 nodesource_setup.sh
+ 16516272 -rw-rw-r--  1000   1000        54 24-Jun-2019 12:38 .packettracer
+ 17697560 drwxrwxr-x  1000   1000      4096  6-May-2019 12:40 .yarn
+ 16519672 -rw-rw-r--  1000   1000       116  6-May-2019 12:42 .yarnrc
+ 17568103 drwx------  1000   1000      4096  7-May-2019 12:16 .ssh
+X17566725 -rw-------  1000   1000       226 10-Jul-2019 14:31 Sergei Simonovi
+ 19530671 drwx------  1000   1000      4096 10-Jun-2019 18:17 .thumbnails
+X16516335 -rw-r--r--  1000   1000     18598 11-Jul-2019 11:06 .ICEauthority-c
+X16516335 -rw-r--r--  1000   1000     18598 11-Jul-2019 11:06 .ICEauthority-l
+Directory /home
+ 16515073 drwxr-xr-x     0      0      4096 20-Jan-2019 20:00 .
+       2 drwxr-xr-x     0      0      4096 20-Jan-2019 20:01 ..
+ 16519444 drwxr-xr-x  1000   1000      4096 11-Jul-2019 13:48 light
+Directory /
+       2 drwxr-xr-x     0      0      4096 20-Jan-2019 20:01 .
+       2 drwxr-xr-x     0      0      4096 20-Jan-2019 20:01 ..
+      11 drwx------     0      0     16384 20-Jan-2019 19:57 lost+found
+      12 -rw-------     0      0 2147483648 20-Jan-2019 19:57 swapfile
+ 7340033 drwxr-xr-x     0      0     12288 25-Jun-2019 12:51 etc
+ 17039361 drwxr-xr-x     0      0      4096  5-Feb-2019 15:11 media
+ 14417921 drwxr-xr-x     0      0      4096 30-May-2019 12:14 bin
+ 10485761 drwxr-xr-x     0      0      4096 30-May-2019 12:36 boot
+ 1572865 drwxr-xr-x     0      0      4096 17-Dec-2018 17:46 dev
+ 16515073 drwxr-xr-x     0      0      4096 20-Jan-2019 20:00 home
+ 16252929 drwxr-xr-x     0      0      4096 20-Jan-2019 20:02 lib
+ 15204353 drwxr-xr-x     0      0      4096 17-Dec-2018 17:16 lib64
+  262145 drwxr-xr-x     0      0      4096 17-Dec-2018 17:16 mnt
+  393217 drwxr-xr-x     0      0      4096 20-Jun-2019 11:57 opt
+ 8388609 drwxr-xr-x     0      0      4096 24-Apr-2018 12:34 proc
+ 4456449 drwx------     0      0      4096  5-Feb-2019 16:08 root
+ 16777217 drwxr-xr-x     0      0      4096 17-Dec-2018 17:47 run
+ 18350081 drwxr-xr-x     0      0     12288 30-May-2019 12:20 sbin
+ 20185089 drwxr-xr-x     0      0      4096 17-Dec-2018 17:16 srv
+ 19922945 drwxr-xr-x     0      0      4096 24-Apr-2018 12:34 sys
+ 9175041 drwxrwxrwt     0      0     20480 11-Jul-2019 14:10 tmp
+ 13631489 drwxr-xr-x     0      0      4096 30-May-2019 12:16 usr
+ 2359297 drwxr-xr-x     0      0      4096  4-Mar-2019 12:41 var
+      13 lrwxrwxrwx     0      0        33 20-Jan-2019 20:01 initrd.img
+      14 lrwxrwxrwx     0      0        33 20-Jan-2019 19:57 initrd.img.old
+      15 lrwxrwxrwx     0      0        30 20-Jan-2019 20:01 vmlinuz
+X     16 lrwxrwxrwx     0      0        30 20-Jan-2019 19:57 vmlinuz.old
+ 12845057 drwxr-xr-x     0      0      4096 20-Jan-2019 20:00 cdrom
+
+
+dir_partition inode=2
+ 3 P Linux                17699 124 26 60801  61 52  692429688
+     ext4 blocksize=4096 Large_file Sparse_SB Recover, 354 GB / 330 GiB
+Directory /
+       2 drwxr-xr-x     0      0      4096 20-Jan-2019 20:01 .
+       2 drwxr-xr-x     0      0      4096 20-Jan-2019 20:01 ..
+      11 drwx------     0      0     16384 20-Jan-2019 19:57 lost+found
+      12 -rw-------     0      0 2147483648 20-Jan-2019 19:57 swapfile
+ 7340033 drwxr-xr-x     0      0     12288 25-Jun-2019 12:51 etc
+ 17039361 drwxr-xr-x     0      0      4096  5-Feb-2019 15:11 media
+ 14417921 drwxr-xr-x     0      0      4096 30-May-2019 12:14 bin
+ 10485761 drwxr-xr-x     0      0      4096 30-May-2019 12:36 boot
+ 1572865 drwxr-xr-x     0      0      4096 17-Dec-2018 17:46 dev
+ 16515073 drwxr-xr-x     0      0      4096 20-Jan-2019 20:00 home
+ 16252929 drwxr-xr-x     0      0      4096 20-Jan-2019 20:02 lib
+ 15204353 drwxr-xr-x     0      0      4096 17-Dec-2018 17:16 lib64
+  262145 drwxr-xr-x     0      0      4096 17-Dec-2018 17:16 mnt
+  393217 drwxr-xr-x     0      0      4096 20-Jun-2019 11:57 opt
+ 8388609 drwxr-xr-x     0      0      4096 24-Apr-2018 12:34 proc
+ 4456449 drwx------     0      0      4096  5-Feb-2019 16:08 root
+ 16777217 drwxr-xr-x     0      0      4096 17-Dec-2018 17:47 run
+ 18350081 drwxr-xr-x     0      0     12288 30-May-2019 12:20 sbin
+ 20185089 drwxr-xr-x     0      0      4096 17-Dec-2018 17:16 srv
+ 19922945 drwxr-xr-x     0      0      4096 24-Apr-2018 12:34 sys
+ 9175041 drwxrwxrwt     0      0     20480 11-Jul-2019 14:10 tmp
+ 13631489 drwxr-xr-x     0      0      4096 30-May-2019 12:16 usr
+ 2359297 drwxr-xr-x     0      0      4096  4-Mar-2019 12:41 var
+      13 lrwxrwxrwx     0      0        33 20-Jan-2019 20:01 initrd.img
+      14 lrwxrwxrwx     0      0        33 20-Jan-2019 19:57 initrd.img.old
+      15 lrwxrwxrwx     0      0        30 20-Jan-2019 20:01 vmlinuz
+X     16 lrwxrwxrwx     0      0        30 20-Jan-2019 19:57 vmlinuz.old
+ 12845057 drwxr-xr-x     0      0      4096 20-Jan-2019 20:00 cdrom
+
+dir_partition inode=16515073
+ 3 P Linux                17699 124 26 60801  61 52  692429688
+     ext4 blocksize=4096 Large_file Sparse_SB Recover, 354 GB / 330 GiB
+Directory /home
+ 16515073 drwxr-xr-x     0      0      4096 20-Jan-2019 20:00 .
+       2 drwxr-xr-x     0      0      4096 20-Jan-2019 20:01 ..
+ 16519444 drwxr-xr-x  1000   1000      4096 11-Jul-2019 13:48 light
+
+dir_partition inode=16519444
+ 3 P Linux                17699 124 26 60801  61 52  692429688
+     ext4 blocksize=4096 Large_file Sparse_SB Recover, 354 GB / 330 GiB
+Directory /home/light
+ 16519444 drwxr-xr-x  1000   1000      4096 11-Jul-2019 13:48 .
+ 16515073 drwxr-xr-x     0      0      4096 20-Jan-2019 20:00 ..
+ 16519445 -rw-r--r--  1000   1000       516 20-Jan-2019 20:00 .gtkrc-xfce
+ 16519446 -rw-r--r--  1000   1000       807 20-Jan-2019 20:00 .profile
+ 16519447 -rw-r--r--  1000   1000       220 20-Jan-2019 20:00 .bash_logout
+ 16519448 -rw-r--r--  1000   1000        22 20-Jan-2019 20:00 .gtkrc-2.0
+ 16519449 drwxr-xr-x  1000   1000      4096 26-Jun-2019 11:07 .config
+ 16519457 -rw-r--r--  1000   1000      3800  7-May-2019 16:21 .bashrc
+ 16516251 drwx------  1000   1000      4096 20-Jun-2019 12:16 .cache
+ 16516255 drwx------  1000   1000      4096 20-Jan-2019 20:07 .gnupg
+ 16516254 -rw-r--r--  1000   1000        27 20-Jan-2019 20:07 .dmrc
+ 16516257 -rw-------  1000   1000        69 11-Jul-2019 11:06 .Xauthority
+ 16516258 -rw-------  1000   1000    275771 11-Jul-2019 14:16 .xsession-errors
+ 16516262 drwx------  1000   1000      4096 20-Jan-2019 20:07 .local
+ 16516265 drwxr-xr-x  1000   1000      4096 17-Jun-2019 15:23 Desktop
+ 16516270 drwxr-xr-x  1000   1000      4096 20-Jan-2019 20:07 Public
+ 16516260 -rw-------  1000   1000     45240 11-Jul-2019 11:06 .ICEauthority
+ 16516267 drwxr-xr-x  1000   1000      4096 20-Jun-2019 16:07 Downloads
+ 16516269 drwxr-xr-x  1000   1000      4096 20-Jan-2019 20:07 Templates
+ 16516271 drwxr-xr-x  1000   1000      4096 10-Apr-2019 17:10 Documents
+ 16516659 -rw-------  1000   1000      2685  4-Jun-2019 17:09 .viminfo
+ 16516273 drwxr-xr-x  1000   1000      4096 10-May-2019 12:10 Pictures
+ 17960198 drwxrwxr-x  1000   1000      4096  9-Jul-2019 18:27 Videos
+ 16516277 drwx------  1000   1000      4096 30-May-2019 14:47 .gconf
+ 16516324 drwxrwxr-x  1000   1000      4096 20-Jan-2019 20:07 .cinnamon
+ 16516371 -rw-r--r--  1000   1000         0 20-Jan-2019 20:09 .sudo_as_admin_successful
+ 16516966 -rw-------  1000   1000     40481 11-Jul-2019 13:48 .bash_history
+ 16516376 drwx------  1000   1000      4096 20-Jan-2019 20:11 .mozilla
+ 16788539 drwx------  1000   1000      4096 20-Jan-2019 20:21 .pki
+ 16788583 drwx------  1000   1000      4096 20-Jan-2019 20:21 .gnome
+ 16656337 drwx------     0      0      4096 20-Jan-2019 20:44 .dbus
+X16519572 -rw-------  1000   1000     11335 10-Jul-2019 12:45 temp
+ 16516835 -rw-------  1000   1000      6363  5-Jun-2019 11:00 .mysql_history
+ 16516266 -rw-------  1000   1000    304012 10-Jul-2019 15:53 .xsession-errors.old
+ 17827675 drwx------     0      0      4096 21-Jan-2019 12:53 .gvfs
+ 18088422 drwxrwxr-x  1000   1000      4096 21-Jan-2019 13:02 .PhpStorm2018.3
+ 18088434 drwxrwxr-x  1000   1000      4096 21-Jan-2019 13:02 .java
+X16516275 -rw-r--r--  1000   1000     18598 11-Jul-2019 11:06 .ICEauthority-c
+ 18088457 drwxrwxrwx  1000   1000      4096  4-Jun-2019 15:45 PhpstormProjects
+X17172396 drwxrwxrwx  1000   1000         0  9-Jul-2019 18:28 sympho
+ 16656298 drwxrwxr-x  1000   1000      4096 30-May-2019 12:19 .linuxmint
+ 16516829 -rw-rw-r--  1000   1000       108 27-May-2019 15:24 .gitconfig
+ 16799809 drwx------  1000   1000     12288 11-Jul-2019 11:07 .nx
+ 16913005 drwx------  1000   1000      4096  5-Feb-2019 15:12 .qt
+ 16519587 -rw-rw-r--  1000   1000       130  8-Feb-2019 13:47 .xinputrc
+ 17042363 drwxrwxrwx  1000   1000      4096  3-Jul-2019 12:25 .composer
+ 18482196 drwxr-xr-x  1000   1000      4096 20-Jun-2019 16:04 .gimp-2.8
+X16516966 -rw-------  1000   1000     40481 11-Jul-2019 13:48 .bash_history-03320.tmp
+X16519594 -rw-------  1000   1000     59034 10-Jul-2019 12:21 composer.lock
+ 17042366 drwxrwxr-x  1000   1000      4096 26-Feb-2019 15:07 .var
+ 17960039 drwxrwxr-x  1000   1000      4096 20-Jun-2019 12:16 pt
+X18093131 drwxrwxr-x  1000   1000         0  9-Jul-2019 18:26 test
+ 17046838 drwxrwxr-x  1000   1000      4096 12-Mar-2019 12:23 .console
+ 17042693 drwxr-xr-x     0      0      4096 15-Mar-2019 16:41 .zenmap
+X16519643 -rw-------  1000   1000     11469 10-Jul-2019 12:19 drupal.phar
+ 17827884 drwxrwxr-x  1000   1000      4096 11-Jul-2019 13:58 girchi-com-d8
+ 19402126 drwxrwxr-x  1000   1000      4096 18-Jun-2019 18:09 .sqlmap
+X16519661 -rw-------  1000   1000     14048 10-Jul-2019 12:21 nodesource_setup.sh
+ 16516272 -rw-rw-r--  1000   1000        54 24-Jun-2019 12:38 .packettracer
+ 17697560 drwxrwxr-x  1000   1000      4096  6-May-2019 12:40 .yarn
+ 16519672 -rw-rw-r--  1000   1000       116  6-May-2019 12:42 .yarnrc
+ 17568103 drwx------  1000   1000      4096  7-May-2019 12:16 .ssh
+X17566725 -rw-------  1000   1000       226 10-Jul-2019 14:31 Sergei Simonovi
+ 19530671 drwx------  1000   1000      4096 10-Jun-2019 18:17 .thumbnails
+X16516335 -rw-r--r--  1000   1000     18598 11-Jul-2019 11:06 .ICEauthority-c
+X16516335 -rw-r--r--  1000   1000     18598 11-Jul-2019 11:06 .ICEauthority-l
+SIGINT detected! TestDisk has been killed.
