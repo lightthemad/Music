@@ -5,15 +5,23 @@ jobs:
       - image: wodby/php
     steps:
       - checkout
-      - run:
-          name: install dependencies
-          command: |
-            composer install
+#      - run:
+#          name: install dependencies
+#          command: |
+#            composer install
       - run:
           name: install drupal coder
           command: | 
             composer global require drupal/coder
       - run:
-          name: run PHPCS tests
+          name: install behat
           command: |
-            bash ./.circleci/phpcs.sh
+            composer require behat/behat
+#      - run:
+#          name: run PHPCS tests
+#          command: |
+#            bash ./.circleci/phpcs.sh
+      - run:
+          name: run BEHAT tests
+          command: |
+            bash ./.circleci/behat.sh
