@@ -44,6 +44,8 @@ getSongs();
 /**
  * You can upload songs, which are less than 2MB, to fix this, check your php.ini
  */
+if (isset($_POST['filename'])) {
+
 if(is_uploaded_file($_FILES["filename"]["tmp_name"]) && $_FILES["filename"]["type"] == "audio/mp3")
 {
     move_uploaded_file($_FILES["filename"]["tmp_name"], root."/model/uploads/music/".$_FILES["filename"]["name"]);
@@ -56,7 +58,7 @@ else
 {
     echo("<p class='text'>Error while uploading file!</p>");
 }
-
+}
 
 ?>
 
