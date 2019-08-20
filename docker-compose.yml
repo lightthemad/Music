@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  apache:
+    image: webdevops/php-apache-dev
+    container_name: aws_apache
+    environment:
+      WEB_DOCUMENT_ROOT: /var/www/html
+      WEB_DOCUMENT_INDEX: /var/www/html/index.php
+    volumes:
+      - ./:/var/www/html
